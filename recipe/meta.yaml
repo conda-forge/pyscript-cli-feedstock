@@ -1,13 +1,13 @@
 {% set name = "pyscript-cli" %}
-{% set version = "0.2.1" %}
+{% set version = "0.3.4" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyscript-cli-{{ version }}.tar.gz
-  sha256: ede343411e4d353dbf36685c5232a91ffe3e6a912ade8b6a177d185158da7c2c
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 301dabcfb7040d51426014e4e80e27d3f8dbd4e27b1f627ebde802d88048620e
 
 build:
   entry_points:
