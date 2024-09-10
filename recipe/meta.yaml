@@ -1,13 +1,13 @@
 {% set name = "pyscript-cli" %}
-{% set version = "0.2.1" %}
+{% set version = "0.3.4" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyscript-cli-{{ version }}.tar.gz
-  sha256: ede343411e4d353dbf36685c5232a91ffe3e6a912ade8b6a177d185158da7c2c
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 301dabcfb7040d51426014e4e80e27d3f8dbd4e27b1f627ebde802d88048620e
 
 build:
   entry_points:
@@ -20,14 +20,16 @@ requirements:
   host:
     - pip
     - poetry-core >=1.0.0
-    - python >=3.7
+    - python >=3.9
   run:
-    - importlib-metadata >=4.11.3,<5.0.0
-    - jinja2 >=3.1.2,<4.0.0
-    - python >=3.7
-    - rich >=12.3.0,<13.0.0
-    - rich-click >=1.3.0,<2.0.0
-    - typer >=0.4.1,<0.5.0
+    - jinja2 <3.2
+    - platformdirs <4.3
+    - pluggy ==1.5.0
+    - python >=3.9
+    - requests <=2.31.0
+    - rich <=13.7.1
+    - toml <0.11
+    - typer <=0.9.0
 
 test:
   imports:
