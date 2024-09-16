@@ -13,7 +13,9 @@ build:
   skip: true  # [py<39]
   entry_points:
     - pyscript = pyscript.cli:app
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script: |
+    set PYTHONIOENCODING=utf-8
+    {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 1
 
 requirements:
