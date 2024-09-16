@@ -6,30 +6,30 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyscript_cli-{{ version }}.tar.gz
   sha256: 301dabcfb7040d51426014e4e80e27d3f8dbd4e27b1f627ebde802d88048620e
 
 build:
+  skip: true  # [py<39]
   entry_points:
     - pyscript = pyscript.cli:app
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 0
-  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 1
 
 requirements:
   host:
+    - python
     - pip
-    - poetry-core >=1.0.0
-    - python >=3.9
   run:
+    - python
+    - importlib-metadata  # [py<38]
     - jinja2 <3.2
-    - platformdirs <4.3
     - pluggy ==1.5.0
-    - python >=3.9
-    - requests <=2.31.0
     - rich <=13.7.1
     - toml <0.11
     - typer <=0.9.0
+    - platformdirs <4.3
+    - requests <=2.31.0
 
 test:
   imports:
@@ -49,3 +49,4 @@ about:
 extra:
   recipe-maintainers:
     - BastianZim
+    - madhur-tandon
