@@ -6,26 +6,26 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 301dabcfb7040d51426014e4e80e27d3f8dbd4e27b1f627ebde802d88048620e
 
 build:
   entry_points:
     - pyscript = pyscript.cli:app
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
   host:
     - pip
     - poetry-core >=1.0.0
-    - python >=3.9
+    - python {{ python_min }}
   run:
     - jinja2 <3.2
     - platformdirs <4.3
     - pluggy ==1.5.0
-    - python >=3.9
+    - python >={{ python_min }}
     - requests <=2.31.0
     - rich <=13.7.1
     - toml <0.11
@@ -39,6 +39,7 @@ test:
     - pyscript --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/pyscript/pyscript-cli
